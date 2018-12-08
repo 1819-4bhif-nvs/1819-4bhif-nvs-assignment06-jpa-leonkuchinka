@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="db@localhost">
+  <database-model serializer="dbm" rdbms="DERBY" format-version="4.11">
+    <root id="1">
+      <ServerVersion>10.14</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="APP">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="NULLID"/>
+    <schema id="4" parent="1" name="SQLJ"/>
+    <schema id="5" parent="1" name="SYS"/>
+    <schema id="6" parent="1" name="SYSCAT"/>
+    <schema id="7" parent="1" name="SYSCS_DIAG"/>
+    <schema id="8" parent="1" name="SYSCS_UTIL"/>
+    <schema id="9" parent="1" name="SYSFUN"/>
+    <schema id="10" parent="1" name="SYSIBM"/>
+    <schema id="11" parent="1" name="SYSPROC"/>
+    <schema id="12" parent="1" name="SYSSTAT"/>
+    <table id="13" parent="2" name="GOLFER"/>
+    <table id="14" parent="2" name="HOBBYPLAYER"/>
+    <table id="15" parent="2" name="TEAMPLAYER"/>
+    <table id="16" parent="2" name="TEETIME"/>
+    <table id="17" parent="2" name="TEETIME_GOLFER"/>
+    <column id="18" parent="13" name="DTYPE">
+      <Position>1</Position>
+      <DataType>VARCHAR(31)|12s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="13" name="ID">
+      <Position>2</Position>
+      <DataType>BIGINT|-5s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
+    </column>
+    <column id="20" parent="13" name="AGE">
+      <Position>3</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="13" name="HCP">
+      <Position>4</Position>
+      <DataType>DOUBLE|8s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="13" name="NAME">
+      <Position>5</Position>
+      <DataType>VARCHAR(255)|12s</DataType>
+    </column>
+    <index id="23" parent="13" name="SQL181208122435520">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="24" parent="13" name="SQL181208122435520">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="25" parent="14" name="ISPREMIUMMEMBER">
+      <Position>1</Position>
+      <DataType>SMALLINT|5s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="14" name="ID">
+      <Position>2</Position>
+      <DataType>BIGINT|-5s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="14" name="SQL181208122435560">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="28" parent="14" name="SQL181208122435640">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+    </index>
+    <key id="29" parent="14" name="SQL181208122435560">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="14" name="FKQPI86Y4NHLWA7H0PH5NI07QA6">
+      <ColNames>ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>GOLFER</RefTableName>
+      <RefKeyName>SQL181208122435520</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="31" parent="15" name="ISREGULARPLAYER">
+      <Position>1</Position>
+      <DataType>SMALLINT|5s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="15" name="JOINED">
+      <Position>2</Position>
+      <DataType>INTEGER|4s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="15" name="ID">
+      <Position>3</Position>
+      <DataType>BIGINT|-5s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="34" parent="15" name="SQL181208122435580">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="35" parent="15" name="SQL181208122435650">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+    </index>
+    <key id="36" parent="15" name="SQL181208122435580">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="37" parent="15" name="FK98RCEIAAXSHFI9NKN6G518RJB">
+      <ColNames>ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>GOLFER</RefTableName>
+      <RefKeyName>SQL181208122435520</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="38" parent="16" name="ID">
+      <Position>1</Position>
+      <DataType>BIGINT|-5s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>GENERATED_BY_DEFAULT</DefaultExpression>
+    </column>
+    <column id="39" parent="16" name="TIME">
+      <Position>2</Position>
+      <DataType>TIMESTAMP|93s</DataType>
+    </column>
+    <index id="40" parent="16" name="SQL181208122435610">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="41" parent="16" name="SQL181208122435610">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="42" parent="17" name="TEETIME_ID">
+      <Position>1</Position>
+      <DataType>BIGINT|-5s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="17" name="PLAYERS_ID">
+      <Position>2</Position>
+      <DataType>BIGINT|-5s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="44" parent="17" name="SQL181208122435680">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TEETIME_ID</ColNames>
+    </index>
+    <index id="45" parent="17" name="SQL181208122435651">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>PLAYERS_ID</ColNames>
+    </index>
+    <foreign-key id="46" parent="17" name="FKD8A8A3D1HJTNPHNDT6SJYMRL2">
+      <ColNames>TEETIME_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>TEETIME</RefTableName>
+      <RefKeyName>SQL181208122435610</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="47" parent="17" name="FK584XEGJPU57Q3P05TOKQP1RJK">
+      <ColNames>PLAYERS_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>GOLFER</RefTableName>
+      <RefKeyName>SQL181208122435520</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
