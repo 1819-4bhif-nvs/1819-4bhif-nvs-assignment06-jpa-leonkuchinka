@@ -1,13 +1,19 @@
 package at.htl.gca.rest;
 
 import at.htl.gca.model.Golfer;
+import at.htl.gca.model.HobbyPlayer;
+import at.htl.gca.model.Team;
+import at.htl.gca.model.TeamPlayer;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.util.List;
 
 @Path("golfer")
@@ -17,50 +23,82 @@ public class GolferEndpoint {
     @PersistenceContext
     EntityManager em;
 
+    @Path("findall/tp")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAllTeamPlayer(){
+        List<TeamPlayer> list = em.createNamedQuery("TeamPlayer.findall", TeamPlayer.class).getResultList();
+        return Response.ok(list).build();
+    }
+
+    @Path("findall/hp")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAllHobbyPlayer(){
+        List<HobbyPlayer> list = em.createNamedQuery("HobbyPlayer.findall", HobbyPlayer.class).getResultList();
+        return Response.ok(list).build();
+    }
+
     @Path("findall")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Golfer> findAll(){
-        return em.createNamedQuery("Golfer.findAll", Golfer.class).getResultList();
+    public Response findAll(){
+        List<Golfer> list = em.createNamedQuery("Golfer.findall", Golfer.class).getResultList();
+        return Response.ok(list).build();
     }
 
     @Path("find/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Golfer find(@PathParam("id") long id){
-        return em.find(Golfer.class, id);
+    public Response find(@PathParam("id") long id){
+        Golfer g = em.find(Golfer.class, id);
+        if(g != null){
+            return Response.ok(g).build();
+        }
+        else
+        {
+            return Response.noContent().build();
+        }
     }
-
 
     @Path("delete/{id}")
     @DELETE
-    @Transactional
-    public void delete(@PathParam("id") long id){
-        Golfer g = em.find(Golfer.class, id);
-        em.remove(g);
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id") long id){
+        em.remove(em.find(Golfer.class, id));
+        return Response.ok().build();
     }
 
-    @Path("put/{id}")
-    @PUT
-    @Transactional
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void put(@PathParam("id") long id, Golfer golfer){
-        Golfer g = em.find(Golfer.class, id);
-        g.setAge(golfer.getAge());
-        g.setHcp(golfer.getHcp());
-        g.setName(golfer.getName());
-        em.merge(g);
-    }
-
-    @Path("post")
+    @Path("new/tp")
     @POST
-    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public Long post(Golfer golfer){
-        em.persist(golfer);
+    public Response add(TeamPlayer p){
+        em.persist(p);
         em.flush();
-        return golfer.getId();
+        return Response.created(URI.create("http://localhost:8085/gca/api/golfer/find/" + p.getId())).build();
+    }
+
+    @Path("new/hp")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response add(HobbyPlayer p){
+        em.persist(p);
+        em.flush();
+        return Response.created(URI.create("http://localhost:8085/gca/api/golfer/find/" + p.getId())).build();
+    }
+
+    @Path("update/tp/{id}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") long id, TeamPlayer p){
+        TeamPlayer player = em.find(TeamPlayer.class, id);
+        player.setName(p.getName());
+        player.setAge(p.getAge());
+        player.setHcp(p.getHcp());
+        player.setJoined(p.getJoined());
+        player.setRegularPlayer(p.isRegularPlayer());
+        em.merge(player);
+        return Response.ok().build();
     }
 
 
