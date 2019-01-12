@@ -12,7 +12,7 @@
 - Erstellen Systemtests auf Basis JavaSE.
 
 ## Class Diagramm
-![cld](https://github.com/1819-4bhif-nvs/1819-4bhif-nvs-assignment06-jpa-leonkuchinka/blob/master/cld.PNG)
+![cld](cld.PNG)
 
 ## ERD
-![erd](https://github.com/1819-4bhif-nvs/1819-4bhif-nvs-assignment06-jpa-leonkuchinka/blob/master/erd.PNG)
+![erd](erd.PNG)
