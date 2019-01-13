@@ -16,7 +16,7 @@ public class TeeTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     private LocalDate time;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Golfer> players;
 
     //region Constructors
@@ -31,6 +31,11 @@ public class TeeTime {
     //endregion
 
     //region Getter and Setter
+
+    public Long getId() {
+        return id;
+    }
+
     public List<Golfer> getPlayers() {
         return players;
     }

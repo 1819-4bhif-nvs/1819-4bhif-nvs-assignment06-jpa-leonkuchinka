@@ -1,9 +1,6 @@
 package at.htl.gca.rest;
 
-import at.htl.gca.model.Golfer;
-import at.htl.gca.model.HobbyPlayer;
-import at.htl.gca.model.Team;
-import at.htl.gca.model.TeamPlayer;
+import at.htl.gca.model.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -65,7 +62,23 @@ public class GolferEndpoint {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") long id){
-        em.remove(em.find(Golfer.class, id));
+        try{
+            Golfer g = em.find(Golfer.class, id);
+            if(g != null){
+                g.getTeeTimes().forEach(t -> {
+                    t.removePlayer(g);
+                });
+                em.merge(g);
+                if(g instanceof TeamPlayer){
+                    TeamPlayer t = (TeamPlayer)g;
+                    t.getTeam().removeMember(t);
+                }
+                em.remove(g);
+            }
+        }
+        catch (Exception e){
+            return Response.status(404).build();
+        }
         return Response.ok().build();
     }
 

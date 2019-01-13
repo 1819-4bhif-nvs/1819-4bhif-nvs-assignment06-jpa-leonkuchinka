@@ -2,31 +2,56 @@ package at.htl.model;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.LinkedList;
+import java.util.List;
 
 @XmlRootElement
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name="Golfer.findall", query="select g from Golfer g")
 @DiscriminatorColumn
-@NamedQueries({
-        @NamedQuery(name = "Golfer.findAll", query = "select g from Golfer g"),
-        @NamedQuery(name = "Golfer.findByName", query = "select g from Golfer g where g.name like ?1"),
-        @NamedQuery(name = "Golfer.findById", query = "select g from Golfer g where g.id = ?1")
-})
-public class Golfer {
+public abstract class Golfer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     protected String name;
     protected double hcp;
     protected int age;
+    @ManyToMany(mappedBy = "players", cascade = CascadeType.REMOVE)
+    @Transient
+    @XmlTransient
+    protected List<TeeTime> teeTimes;
 
+    //region Constructors
     public Golfer() {
+        teeTimes = new LinkedList<>();
     }
 
     public Golfer(String name, double hcp, int age) {
+        this();
         this.name = name;
         this.hcp = hcp;
         this.age = age;
+    }
+    //endregion
+
+    //region Getter and Setter
+    public void addTeeTime(TeeTime teeTime){
+        if(!teeTimes.contains(teeTime))
+            teeTimes.add(teeTime);
+        if(!teeTime.getPlayers().contains(this))
+            teeTime.addPlayer(this);
+
+    }
+    public void removeTeeTime(TeeTime teeTime){
+        if(teeTimes.contains(teeTime))
+            teeTimes.remove(teeTime);
+        if(teeTime.getPlayers().contains(this))
+            teeTime.removePlayer(this);
+    }
+    public List<TeeTime> getTeeTimes() {
+        return teeTimes;
     }
 
     public Long getId() {
@@ -56,4 +81,5 @@ public class Golfer {
     public void setName(String name) {
         this.name = name;
     }
+    //endregion
 }

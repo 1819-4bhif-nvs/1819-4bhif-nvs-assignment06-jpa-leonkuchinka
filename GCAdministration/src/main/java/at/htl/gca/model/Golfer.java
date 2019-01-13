@@ -18,7 +18,7 @@ public abstract class Golfer {
     protected String name;
     protected double hcp;
     protected int age;
-    @ManyToMany(mappedBy = "players", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "players", cascade = CascadeType.REMOVE)
     @Transient
     @XmlTransient
     protected List<TeeTime> teeTimes;

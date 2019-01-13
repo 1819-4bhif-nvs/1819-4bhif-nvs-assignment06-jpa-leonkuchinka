@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="dbPU" transaction-type="RESOURCE_LOCAL">
-        <class>at.htl.model.Golfer</class>
-        <class>at.htl.model.TeeTime</class>
-        <class>at.htl.model.HobbyPlayer</class>
+        <class>at.htl.model.Team</class>
         <class>at.htl.model.TeamPlayer</class>
+        <class>at.htl.model.HobbyPlayer</class>
+        <class>at.htl.model.TeeTime</class>
+        <class>at.htl.model.Golfer</class>
         <class>at.htl.converter.LocalDateConverter</class>
-
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="eclipselink.logging.level" value="FINE"/>
