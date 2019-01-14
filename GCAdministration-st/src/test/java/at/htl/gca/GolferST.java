@@ -90,12 +90,12 @@ public class GolferST {
                     .build();
             this.target.path("/golfer/update/tp/1").request().put(Entity.json(pupil));
         }
-/*
+
         @Test
         public void test05_DeleteGolferWhoHasTeeTimes(){
             Response response = this.target.path("/golfer/delete/6").request().delete();
-            assertThat(response.getStatus(), is(404));
-        }*/
+            assertThat(response.getStatus(), is(200));
+        }
 
 
         @Test

@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3f52527-aee8-4f2b-877a-49671b0174c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/at/htl/model/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9858bf38-55ed-4b55-93aa-ffcb14dd96c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9858bf38-55ed-4b55-93aa-ffcb14dd96c3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/htl/model/Golfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/htl/model/Golfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/htl/model/HobbyPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/htl/model/HobbyPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/htl/model/TeamPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/htl/model/TeamPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/htl/model/TeeTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/htl/model/TeeTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gca-st.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gca-st.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/at/htl/gca/GolferST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/at/htl/gca/GolferST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GCAdministration/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GCAdministration/gcadministration.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/gcadministration.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GCAdministration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/model/Golfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/model/Golfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/model/TeeTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/model/TeeTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/model/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/rest/GolferEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/rest/GolferEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/rest/TeeTimeEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../GCAdministration/src/main/java/at/htl/gca/rest/TeeTimeEndpoint.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -104,21 +98,22 @@
     <session id="-575948437">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="360" />
+          <entry key="java" value="363" />
           <entry key="xml" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="360" />
+          <entry key="JAVA" value="363" />
           <entry key="XML" value="35" />
         </counts>
       </usages-collector>
@@ -145,8 +140,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/at/htl/gca/GolferST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="101" column="42" lean-forward="true" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
+            <state relative-caret-position="13">
+              <caret line="96" column="51" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -157,8 +152,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/at/htl/model/Golfer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state relative-caret-position="374">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
                 <element signature="e#740#741#0" expanded="true" />
                 <element signature="e#785#786#0" expanded="true" />
@@ -189,7 +184,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+              <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -233,10 +228,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1928" />
-    <option name="y" value="-217" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -244,7 +239,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -327,15 +324,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="derby" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547387481016" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547458282908" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -391,22 +386,11 @@
       <workItem from="1544263441625" duration="5043000" />
       <workItem from="1547296422441" duration="996000" />
       <workItem from="1547379420184" duration="5124000" />
+      <workItem from="1547457064818" duration="758000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unnamed - 2019.01.13 at 14h 41m 47s.xml">
-      <configuration name="Unnamed" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Unnamed - 2019.01.13 at 14h 43m 58s.xml">
-      <configuration name="Unnamed" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Unnamed - 2019.01.13 at 14h 46m 21s.xml">
-      <configuration name="Unnamed" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Unnamed - 2019.01.13 at 14h 46m 57s.xml">
-      <configuration name="Unnamed" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Unnamed - 2019.01.13 at 14h 47m 21s.xml">
       <configuration name="Unnamed" configurationId="JUnit" />
     </history-entry>
@@ -425,15 +409,27 @@
     <history-entry file="Unnamed - 2019.01.13 at 14h 51m 12s.xml">
       <configuration name="Unnamed" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Unnamed - 2019.01.14 at 10h 11m 55s.xml">
+      <configuration name="Unnamed" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Unnamed - 2019.01.14 at 10h 12m 55s.xml">
+      <configuration name="Unnamed" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Unnamed - 2019.01.14 at 10h 13m 16s.xml">
+      <configuration name="Unnamed" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Unnamed - 2019.01.14 at 10h 30m 58s.xml">
+      <configuration name="Unnamed" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13009000" />
+    <option name="totallyTimeSpent" value="13767000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-217" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18456884" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -443,7 +439,7 @@
       <window_info id="Persistence" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30666667" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47108844" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -460,7 +456,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.23933902" />
+      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.23903178" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
@@ -571,13 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/persistence/org.eclipse.persistence.core/2.6.0/org.eclipse.persistence.core-2.6.0.jar!/org/eclipse/persistence/exceptions/ValidationException.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -592,10 +581,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
+    <entry file="file://$PROJECT_DIR$/src/test/java/at/htl/gca/GolferST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+        <state relative-caret-position="13">
+          <caret line="96" column="51" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/at/htl/model/Golfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="e#740#741#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -606,24 +609,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/at/htl/model/Golfer.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <element signature="e#740#741#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/at/htl/gca/GolferST.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="101" column="42" lean-forward="true" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="357">
+          <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
         </state>
       </provider>
     </entry>

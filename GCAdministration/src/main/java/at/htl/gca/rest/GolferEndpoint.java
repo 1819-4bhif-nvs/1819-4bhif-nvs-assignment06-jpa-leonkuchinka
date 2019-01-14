@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("golfer")
@@ -65,9 +66,11 @@ public class GolferEndpoint {
         try{
             Golfer g = em.find(Golfer.class, id);
             if(g != null){
-                g.getTeeTimes().forEach(t -> {
+                List<TeeTime> teetimes = new ArrayList<>(g.getTeeTimes());
+                for (TeeTime t:teetimes) {
                     t.removePlayer(g);
-                });
+                    em.merge(t);
+                }
                 em.merge(g);
                 if(g instanceof TeamPlayer){
                     TeamPlayer t = (TeamPlayer)g;

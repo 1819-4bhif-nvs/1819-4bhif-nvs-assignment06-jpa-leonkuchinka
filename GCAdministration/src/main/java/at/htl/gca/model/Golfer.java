@@ -1,5 +1,7 @@
 package at.htl.gca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.inject.Named;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,8 +20,8 @@ public abstract class Golfer {
     protected String name;
     protected double hcp;
     protected int age;
-    @ManyToMany(mappedBy = "players", cascade = CascadeType.REMOVE)
-    @Transient
+    @ManyToMany(mappedBy = "players", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonIgnore
     @XmlTransient
     protected List<TeeTime> teeTimes;
 

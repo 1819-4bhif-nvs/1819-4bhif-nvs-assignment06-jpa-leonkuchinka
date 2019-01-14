@@ -1,5 +1,8 @@
 package at.htl.gca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -14,8 +17,8 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String teamName;
-    @OneToMany(mappedBy = "team")
-    @Transient
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    @JsonIgnore
     @XmlTransient
     private List<TeamPlayer> teamMembers;
 
