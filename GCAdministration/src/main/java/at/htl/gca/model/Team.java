@@ -11,6 +11,7 @@ import java.util.List;
 
 @XmlRootElement
 @Entity
+@NamedQuery(name="Team.findall", query = "select t from Team t")
 public class Team {
 
     @Id
@@ -31,6 +32,16 @@ public class Team {
     //endregion
 
     //region Getter and Setter
+
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public void addMember(TeamPlayer p){
         if(teamMembers == null)
             teamMembers = new LinkedList<>();

@@ -30,6 +30,8 @@ public class GolferST {
         private static Client client;
         private static WebTarget target;
 
+        private static int createdPlayerId = 0;
+        private static int createdTeamId = 0;
 
         @BeforeClass
         public static void init(){
@@ -62,6 +64,7 @@ public class GolferST {
             JsonObject pupil = this.client.target(response.getLocation()).request(MediaType.APPLICATION_JSON).get().readEntity(JsonObject.class);
             assertThat(pupil.getInt("age"), is(45));
             assertThat(pupil.getString("name"), containsString("Mustermann"));
+            createdPlayerId = pupil.getInt("id");
         }
 
         @Test
@@ -100,9 +103,9 @@ public class GolferST {
 
         @Test
         public void test06_DeleteGolfer(){
-            Response response = this.target.path("/golfer/delete/5").request().delete();
+            Response response = this.target.path("/golfer/delete/" + createdPlayerId).request().delete();
             assertThat(response.getStatus(), is(200));
-            response = this.target.path("/golfer/delete/5").request().delete();
+            response = this.target.path("/golfer/delete/" + createdPlayerId).request().delete();
             assertThat(response.getStatus(), is(200));
         }
 
@@ -115,6 +118,55 @@ public class GolferST {
             assertThat(firstPlayer.getInt("age"), is(17));
             assertThat(firstPlayer.getString("name"), is("Leon Kuchinka"));
         }
+
+        @Test
+        public void test08_DeleteTeeTime(){
+            Response response = target.path("teetime/delete/1").request().delete();
+            assertThat(response.getStatus(), is(200));
+            response = target.path("teetime/delete/1").request().delete();
+            assertThat(response.getStatus(), is(200));
+            response = target.path("teetime/delete/1000").request().delete();
+            assertThat(response.getStatus(), is(200));
+        }
+        @Test
+        public void test09_GetTeam(){
+            Response response = target.path("team/find/1").request().get();
+            assertThat(response.getStatus(), is(200));
+            JsonObject team = response.readEntity(JsonObject.class);
+            assertThat(team.getString("teamName"), is("Youth Team"));
+        }
+        @Test
+        public void test10_CreateTeam(){
+            JsonObject team = Json.createObjectBuilder().add("teamName", "Senior Team").build();
+            Response response = target.path("team/new").request().post(Entity.json(team));
+            assertThat(response.getStatus(), is(201));
+            JsonObject createdTeam = this.client.target(response.getLocation()).request(MediaType.APPLICATION_JSON).get().readEntity(JsonObject.class);
+            assertThat(createdTeam.getString("teamName"), is("Senior Team"));
+            createdTeamId = createdTeam.getInt("id");
+        }
+        @Test
+        public void test11_UpdateTeam(){
+            JsonObject team = Json.createObjectBuilder().add("teamName", "MidAm Team").build();
+            Response response = target.path("team/update/" + createdTeamId).request().put(Entity.json(team));
+            assertThat(response.getStatus(), is(200));
+            response = target.path("team/find/" + createdTeamId).request().get();
+            assertThat(response.getStatus(), is(200));
+            JsonObject updatedTeam = response.readEntity(JsonObject.class);
+            assertThat(updatedTeam.getString("teamName"), is("MidAm Team"));
+        }
+        @Test
+        public void test12_DeleteTeam(){
+            Response response = target.path("team/delete/1").request().delete();
+            assertThat(response.getStatus(), is(200));
+            response = target.path("team/delete/1").request().delete();
+            assertThat(response.getStatus(), is(200));
+            response = target.path("team/delete/" + createdTeamId).request().delete();
+            assertThat(response.getStatus(), is(200));
+            response = target.path("team/delete/1000").request().delete();
+            assertThat(response.getStatus(), is(200));
+        }
+
+
 
 
     }

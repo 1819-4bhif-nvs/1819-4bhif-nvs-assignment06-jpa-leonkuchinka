@@ -8,6 +8,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -39,15 +40,16 @@ public class GolferEndpoint {
 
     @Path("findall")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response findAll(){
         List<Golfer> list = em.createNamedQuery("Golfer.findall", Golfer.class).getResultList();
-        return Response.ok(list).build();
+        GenericEntity entity = new GenericEntity<List<Golfer>>(list){};
+        return Response.ok(entity).build();
     }
 
     @Path("find/{id}")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response find(@PathParam("id") long id){
         Golfer g = em.find(Golfer.class, id);
         if(g != null){
@@ -69,12 +71,6 @@ public class GolferEndpoint {
                 List<TeeTime> teetimes = new ArrayList<>(g.getTeeTimes());
                 for (TeeTime t:teetimes) {
                     t.removePlayer(g);
-                    em.merge(t);
-                }
-                em.merge(g);
-                if(g instanceof TeamPlayer){
-                    TeamPlayer t = (TeamPlayer)g;
-                    t.getTeam().removeMember(t);
                 }
                 em.remove(g);
             }

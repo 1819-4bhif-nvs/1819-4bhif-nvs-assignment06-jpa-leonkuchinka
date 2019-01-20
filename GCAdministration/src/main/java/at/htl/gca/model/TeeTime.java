@@ -1,7 +1,12 @@
 package at.htl.gca.model;
 
+import at.htl.gca.converter.XMLAdapter;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,14 +14,21 @@ import java.util.List;
 @XmlRootElement
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "TeeTime.findAll", query = "select t from TeeTime t")
+        @NamedQuery(name = "TeeTime.findAll", query = "select t from TeeTime t join fetch t.players")
 })
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TeeTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+    @XmlJavaTypeAdapter(XMLAdapter.class)
     private LocalDate time;
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinTable(
+            name="GOLFER_TEETIME",
+            joinColumns = @JoinColumn(name = "TEETIMEID"),
+            inverseJoinColumns = @JoinColumn(name = "GOLFERID")
+    )
     private List<Golfer> players;
 
     //region Constructors
@@ -54,9 +66,9 @@ public class TeeTime {
             g.removeTeeTime(this);
     }
 
-    public LocalDate getTime() {
+    /*public LocalDate getTime() {
         return time;
-    }
+    }*/
 
     public void setTime(LocalDate time) {
         this.time = time;

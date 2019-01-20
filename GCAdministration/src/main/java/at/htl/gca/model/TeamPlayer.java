@@ -1,11 +1,13 @@
 package at.htl.gca.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @NamedQuery(name="TeamPlayer.findall", query = "select p from TeamPlayer p")
 public class TeamPlayer extends Golfer {
-    private boolean isRegularPlayer;
+    private Boolean isRegularPlayer;
     private int joined;
 
 

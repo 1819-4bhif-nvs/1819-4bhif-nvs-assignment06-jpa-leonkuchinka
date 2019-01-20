@@ -2,11 +2,13 @@ package at.htl.gca.model;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @NamedQuery(name="HobbyPlayer.findall", query = "select h from HobbyPlayer h")
 public class HobbyPlayer extends Golfer {
-    private boolean isPremiumMember;
+    private Boolean isPremiumMember;
 
     //region Constuctors
     public HobbyPlayer() {

@@ -20,11 +20,15 @@ public abstract class Golfer {
     protected String name;
     protected double hcp;
     protected int age;
-    @ManyToMany(mappedBy = "players", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "players", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     @XmlTransient
     protected List<TeeTime> teeTimes;
 
+    @JsonIgnore
+    @XmlTransient
+    @Column(name="DTYPE", insertable = false, updatable = false)
+    private String dType;
     //region Constructors
     public Golfer() {
         teeTimes = new LinkedList<>();
