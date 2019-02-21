@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
-    <persistence-unit name="dbPU">
-        <jta-data-source>java:jboss/datasources/DbDS</jta-data-source>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="dbPU" transaction-type="JTA">
+        <!--<jta-data-source>java:jboss/datasources/DbDS</jta-data-source> - FOR WILDFLY-->
+        <!--<jta-data-source>DbDS</jta-data-source> - FOR PAYARA5 & GLASSFISH -->
+        <!--<jta-data-source>jdbc/dbDS</jta-data-source> FOR TOMEE-->
+        <jta-data-source>jdbc/DbDS</jta-data-source>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"></property>
-            <property name="hibernate.show_sql" value="true"></property>
-            <property name="hibernate.format_sql" value="true"></property>
-            <property name="hibernate.trancsaction.flush_before_completion" value="true"></property>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"></property>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"></property>-->
+            <!--<property name="hibernate.show_sql" value="true"></property>-->
+            <!--<property name="hibernate.format_sql" value="true"></property>-->
+            <!--<property name="hibernate.trancsaction.flush_before_completion" value="true"></property>-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"></property>-->
         </properties>
         <!--<jta-data-source>java:/H2DS</jta-data-source>
         <properties>

@@ -7,6 +7,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class InitBean {
     @PersistenceContext
     EntityManager em;
     public InitBean() {
-        
+
     }
 
     @PostConstruct
