@@ -8,13 +8,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
 @XmlRootElement
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "TeeTime.findAll", query = "select t from TeeTime t join fetch t.players")
+        @NamedQuery(name = "TeeTime.findAll", query = "select distinct t from TeeTime t join fetch t.players")
 })
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TeeTime {
@@ -22,8 +23,8 @@ public class TeeTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     @XmlJavaTypeAdapter(XMLAdapter.class)
-    private LocalDate time;
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private LocalDateTime time;
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(
             name="GOLFER_TEETIME",
             joinColumns = @JoinColumn(name = "TEETIMEID"),
@@ -32,7 +33,7 @@ public class TeeTime {
     private List<Golfer> players;
 
     //region Constructors
-    public TeeTime(LocalDate time) {
+    public TeeTime(LocalDateTime time) {
         this();
         this.time = time;
     }
@@ -70,7 +71,7 @@ public class TeeTime {
         return time;
     }*/
 
-    public void setTime(LocalDate time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
     //endregion

@@ -20,7 +20,7 @@ public abstract class Golfer {
     protected String name;
     protected double hcp;
     protected int age;
-    @ManyToMany(mappedBy = "players", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "players", cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JsonIgnore
     @XmlTransient
     protected List<TeeTime> teeTimes;
@@ -58,6 +58,10 @@ public abstract class Golfer {
     }
     public List<TeeTime> getTeeTimes() {
         return teeTimes;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

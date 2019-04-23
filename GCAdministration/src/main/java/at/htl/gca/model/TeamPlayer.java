@@ -2,6 +2,7 @@ package at.htl.gca.model;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @Entity
@@ -9,7 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TeamPlayer extends Golfer {
     private Boolean isRegularPlayer;
     private int joined;
-
 
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -24,7 +24,6 @@ public class TeeTimeEndpoint {
     @PersistenceContext
     EntityManager em;
 
-    @Path("findall")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response getAll(){
@@ -36,7 +35,7 @@ public class TeeTimeEndpoint {
             return Response.noContent().build();
     }
 
-    @Path("find/{id}")
+    @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response get(@PathParam("id") long id){
@@ -47,7 +46,7 @@ public class TeeTimeEndpoint {
             return Response.noContent().build();
     }
 
-    @Path("delete/{id}")
+    @Path("{id}")
     @DELETE
     public Response delete(@PathParam("id") long id){
         try{

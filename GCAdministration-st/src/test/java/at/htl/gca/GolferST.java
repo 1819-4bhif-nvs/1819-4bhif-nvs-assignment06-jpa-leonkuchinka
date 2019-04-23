@@ -41,7 +41,7 @@ public class GolferST {
 
         @Test
         public void test01_GetRequestFindAll(){
-            Response response = this.target.path("/golfer/findall").request(MediaType.APPLICATION_JSON).get();
+            Response response = this.target.path("/golfer").request(MediaType.APPLICATION_JSON).get();
             assertThat(response.getStatus(), is(200));
             JsonArray jsonArray = response.readEntity(JsonArray.class);
             assertThat(jsonArray.getValuesAs(JsonObject.class).size(), greaterThan(1));
@@ -50,7 +50,7 @@ public class GolferST {
 
         @Test
         public void test02_GetGolfer(){
-            JsonObject response = target.path("/golfer/find/1").request(MediaType.APPLICATION_JSON).get(JsonObject.class);
+            JsonObject response = target.path("/golfer/1").request(MediaType.APPLICATION_JSON).get(JsonObject.class);
             assertThat(response.getInt("age"), is(17));
             assertThat(response.getString("name"), is("Leon Kuchinka"));
         }
@@ -59,7 +59,7 @@ public class GolferST {
         public void test03_CreateGolfer(){
             JsonObjectBuilder builder = Json.createObjectBuilder();
             JsonObject newPupil = builder.add("age", 45).add("name", "Max Mustermann").add("hcp", "-45").add("premiumMember", "true").build();
-            Response response = this.target.path("golfer/new/hp").request().post(Entity.json(newPupil));
+            Response response = this.target.path("golfer/hobbyplayer").request().post(Entity.json(newPupil));
             assertThat(response.getStatus(), is(201));
             JsonObject pupil = this.client.target(response.getLocation()).request(MediaType.APPLICATION_JSON).get().readEntity(JsonObject.class);
             assertThat(pupil.getInt("age"), is(45));
@@ -76,10 +76,10 @@ public class GolferST {
                     .add("joined", 2015)
                     .add("regularPlayer", true)
                     .build();
-            Response res = this.target.path("/golfer/update/tp/1").request().put(Entity.json(pupil));
+            Response res = this.target.path("/golfer/teamplayer/1").request().put(Entity.json(pupil));
             assertThat(res.getStatus(), is(200));
 
-            JsonObject response = this.target.path("/golfer/find/1").request(MediaType.APPLICATION_JSON).get().readEntity(JsonObject.class);
+            JsonObject response = this.target.path("/golfer/1").request(MediaType.APPLICATION_JSON).get().readEntity(JsonObject.class);
             assertThat(response.getInt("age"), is(18));
             assertThat(response.getString("name"), is("Leon Kuchinka"));
 
@@ -91,28 +91,28 @@ public class GolferST {
                     .add("joined", 2015)
                     .add("regularPlayer", true)
                     .build();
-            this.target.path("/golfer/update/tp/1").request().put(Entity.json(pupil));
+            this.target.path("/golfer/teamplayer/1").request().put(Entity.json(pupil));
         }
 
         @Test
         public void test05_DeleteGolferWhoHasTeeTimes(){
-            Response response = this.target.path("/golfer/delete/6").request().delete();
+            Response response = this.target.path("/golfer/6").request().delete();
             assertThat(response.getStatus(), is(200));
         }
 
 
         @Test
         public void test06_DeleteGolfer(){
-            Response response = this.target.path("/golfer/delete/" + createdPlayerId).request().delete();
+            Response response = this.target.path("/golfer/" + createdPlayerId).request().delete();
             assertThat(response.getStatus(), is(200));
-            response = this.target.path("/golfer/delete/" + createdPlayerId).request().delete();
+            response = this.target.path("/golfer/" + createdPlayerId).request().delete();
             assertThat(response.getStatus(), is(200));
         }
 
 
         @Test
         public void test07_GetFirstTeetime(){
-            JsonObject response = target.path("teetime/find/1").request(MediaType.APPLICATION_JSON).get(JsonObject.class);
+            JsonObject response = target.path("teetime/1").request(MediaType.APPLICATION_JSON).get(JsonObject.class);
             JsonArray players = response.getJsonArray("players");
             JsonObject firstPlayer = players.getJsonObject(0);
             assertThat(firstPlayer.getInt("age"), is(17));
@@ -121,16 +121,16 @@ public class GolferST {
 
         @Test
         public void test08_DeleteTeeTime(){
-            Response response = target.path("teetime/delete/1").request().delete();
+            Response response = target.path("teetime/1").request().delete();
             assertThat(response.getStatus(), is(200));
-            response = target.path("teetime/delete/1").request().delete();
+            response = target.path("teetime/1").request().delete();
             assertThat(response.getStatus(), is(200));
-            response = target.path("teetime/delete/1000").request().delete();
+            response = target.path("teetime/1000").request().delete();
             assertThat(response.getStatus(), is(200));
         }
         @Test
         public void test09_GetTeam(){
-            Response response = target.path("team/find/1").request().get();
+            Response response = target.path("team/1").request().get();
             assertThat(response.getStatus(), is(200));
             JsonObject team = response.readEntity(JsonObject.class);
             assertThat(team.getString("teamName"), is("Youth Team"));
@@ -138,7 +138,7 @@ public class GolferST {
         @Test
         public void test10_CreateTeam(){
             JsonObject team = Json.createObjectBuilder().add("teamName", "Senior Team").build();
-            Response response = target.path("team/new").request().post(Entity.json(team));
+            Response response = target.path("team").request().post(Entity.json(team));
             assertThat(response.getStatus(), is(201));
             JsonObject createdTeam = this.client.target(response.getLocation()).request(MediaType.APPLICATION_JSON).get().readEntity(JsonObject.class);
             assertThat(createdTeam.getString("teamName"), is("Senior Team"));
@@ -147,22 +147,22 @@ public class GolferST {
         @Test
         public void test11_UpdateTeam(){
             JsonObject team = Json.createObjectBuilder().add("teamName", "MidAm Team").build();
-            Response response = target.path("team/update/" + createdTeamId).request().put(Entity.json(team));
+            Response response = target.path("team/" + createdTeamId).request().put(Entity.json(team));
             assertThat(response.getStatus(), is(200));
-            response = target.path("team/find/" + createdTeamId).request().get();
+            response = target.path("team/" + createdTeamId).request().get();
             assertThat(response.getStatus(), is(200));
             JsonObject updatedTeam = response.readEntity(JsonObject.class);
             assertThat(updatedTeam.getString("teamName"), is("MidAm Team"));
         }
         @Test
         public void test12_DeleteTeam(){
-            Response response = target.path("team/delete/1").request().delete();
+            Response response = target.path("team/1").request().delete();
             assertThat(response.getStatus(), is(200));
-            response = target.path("team/delete/1").request().delete();
+            response = target.path("team/1").request().delete();
             assertThat(response.getStatus(), is(200));
-            response = target.path("team/delete/" + createdTeamId).request().delete();
+            response = target.path("team/" + createdTeamId).request().delete();
             assertThat(response.getStatus(), is(200));
-            response = target.path("team/delete/1000").request().delete();
+            response = target.path("team/1000").request().delete();
             assertThat(response.getStatus(), is(200));
         }
 

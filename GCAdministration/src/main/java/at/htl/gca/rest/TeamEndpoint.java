@@ -20,7 +20,6 @@ public class TeamEndpoint {
     @PersistenceContext
     EntityManager em;
 
-    @Path("/findall")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findall(){
@@ -31,7 +30,7 @@ public class TeamEndpoint {
         return Response.ok(list).build();
     }
 
-    @Path("/find/{id}")
+    @Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") long id){
@@ -41,16 +40,15 @@ public class TeamEndpoint {
         return Response.ok(t).build();
     }
 
-    @Path("/new")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Team t){
         em.persist(t);
         em.flush();
-        return Response.created(URI.create("http://localhost:8085/gca/api/team/find/" + t.getId())).build();
+        return Response.created(URI.create("http://localhost:8085/gca/api/team/" + t.getId())).build();
     }
 
-    @Path("/update/{id}")
+    @Path("{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("id") long id,  Team t){
@@ -60,9 +58,9 @@ public class TeamEndpoint {
         return Response.ok().build();
     }
 
-    @Path("/delete/{id}")
+    @Path("{id}")
     @DELETE
-    public Response delte(@PathParam("id") long id){
+    public Response delete(@PathParam("id") long id){
         try{
             Team t = em.find(Team.class, id);
             if(t != null){

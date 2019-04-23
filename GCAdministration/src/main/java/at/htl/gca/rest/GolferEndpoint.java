@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Path("golfer")
-@Stateless //um sich nicht um Transaktionen kümmern zu müssen
+@Stateless
 public class GolferEndpoint {
 
     @PersistenceContext
     EntityManager em;
 
-    @Path("findall/tp")
+    @Path("teamplayers")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllTeamPlayer(){
@@ -30,7 +30,7 @@ public class GolferEndpoint {
         return Response.ok(list).build();
     }
 
-    @Path("findall/hp")
+    @Path("hobbyplayers")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllHobbyPlayer(){
@@ -38,7 +38,6 @@ public class GolferEndpoint {
         return Response.ok(list).build();
     }
 
-    @Path("findall")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response findAll(){
@@ -47,7 +46,7 @@ public class GolferEndpoint {
         return Response.ok(entity).build();
     }
 
-    @Path("find/{id}")
+    @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response find(@PathParam("id") long id){
@@ -61,7 +60,7 @@ public class GolferEndpoint {
         }
     }
 
-    @Path("delete/{id}")
+    @Path("{id}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") long id){
@@ -81,35 +80,78 @@ public class GolferEndpoint {
         return Response.ok().build();
     }
 
-    @Path("new/tp")
+    /*
+    * path: http://localhost:8085/gca/api/golfer/teamplayer
+    * body:
+    * {
+        "name": "Max Mustermann",
+        "hcp": -45,
+        "age": 49,
+        "joined": 2019,
+        "regularPlayer": false,
+        "joined": 2015,
+        "regularPlayer": true,
+        "team": {
+            "id": 2,
+            "teamName": "Mens Team"
+          }
+      }
+    *
+    * */
+    @Path("teamplayer")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response add(TeamPlayer p){
         em.persist(p);
         em.flush();
-        return Response.created(URI.create("http://localhost:8085/gca/api/golfer/find/" + p.getId())).build();
+        return Response.created(URI.create("http://localhost:8085/gca/api/golfer/" + p.getId())).build();
     }
 
-    @Path("new/hp")
+    /*
+    * path: http://localhost:8085/gca/api/golfer/hobbyplayer
+    * body:
+    * {
+        "name": "Max Mustermann",
+        "hcp": -45,
+        "age": 49,
+        "premiumMember": true
+      }
+    *
+    * */
+    @Path("hobbyplayer")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response add(HobbyPlayer p){
         em.persist(p);
         em.flush();
-        return Response.created(URI.create("http://localhost:8085/gca/api/golfer/find/" + p.getId())).build();
+        return Response.created(URI.create("http://localhost:8085/gca/api/golfer/" + p.getId())).build();
     }
 
-    @Path("update/tp/{id}")
+    /*
+    * path: http://localhost:8085/gca/api/golfer/teamplayer/1
+    * body:
+    * {
+        "name": "Leon Kuchinka",
+        "hcp": -1.7,
+        "age": 18,
+        "joined": 2015,
+        "regularPlayer": true,
+        "team": {
+            "id": 1,
+            "teamName": "Youth Team"
+          }
+      }
+    *
+    * */
+    @Path("teamplayer/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("id") long id, TeamPlayer p){
-        TeamPlayer player = em.find(TeamPlayer.class, id);
-        player.setName(p.getName());
-        player.setAge(p.getAge());
-        player.setHcp(p.getHcp());
-        player.setJoined(p.getJoined());
-        player.setRegularPlayer(p.isRegularPlayer());
-        em.merge(player);
+        TeamPlayer old = em.find(TeamPlayer.class, id);
+        if(old == null)
+            return Response.status(404).build();
+        p.setId(old.getId());
+        em.merge(p);
         return Response.ok().build();
     }
 
